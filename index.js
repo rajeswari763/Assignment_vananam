@@ -1,15 +1,18 @@
 'use strict'
 
-var express = require('../../');
+const express = require('express');
+const bodyParser = require('body-parser');
 
-var app = module.exports = express()
+const app = express();
+const port = 3000;
 
-app.get('/', function(req, res){
-  res.send('Hello World');
+// Use body-parser middleware to parse JSON requests
+app.use(bodyParser.json());
+
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
 });
 
-/* istanbul ignore next */
-if (!module.parent) {
-  app.listen(8080);
+app.listen(port, () => {
   console.log('Express started on port 8080');
-}
+});
